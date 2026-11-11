@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_large">
+
+    <TextView
+        android:id="@+id/tvAuthDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/auth_dialog_title"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_size_headline"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvAuthDialogSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_micro"
+        android:text="@string/auth_dialog_subtitle"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_secondary" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:hint="@string/label_email"
+        app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_touch_target"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:hint="@string/label_password"
+        app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/card_corner_radius"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_touch_target"
+            android:inputType="textPassword"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvAuthError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:textColor="@color/expense_red"
+        android:textSize="@dimen/text_size_secondary"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressAuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmitAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:minHeight="@dimen/button_height"
+        android:text="@string/btn_sign_in"
+        android:textSize="@dimen/text_size_body"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/card_corner_radius" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelAuth"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_micro"
+        android:minHeight="@dimen/min_touch_target"
+        android:text="@string/btn_cancel"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_size_body" />
+
+</LinearLayout>
+

@@ -1,0 +1,30 @@
+*.iml
+.gradle
+/local.properties
+/secrets.properties
+/.idea/
+.DS_Store
+/.idea/
+/.vscode/
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+!gradle/wrapper/gradle-wrapper.jar
+
+
+# Local database credentials (Mac tooling only)
+.env
+.env.*
+!.env.example
+
+# Build output, local caches and signing material
+**/build/
+.kotlin/
+__pycache__/
+*.pyc
+*.jks
+*.keystore
+*.p12

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large">
+
+        <!-- Screen Header -->
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_add_customer"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <!-- Customer Name Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilName"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:hint="@string/label_name"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="textPersonName"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Nickname Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNickname"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_nickname"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNickname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="textPersonName"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Father's Name Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilFatherName"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_father_name"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFatherName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="textPersonName"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Village Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilVillage"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_village"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVillage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="textPostalAddress"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Phone Number Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhone"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_phone"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="phone"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Save Button (Min 56dp height) -->
+        <TextView
+            android:id="@+id/tvSaveError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:accessibilityLiveRegion="polite"
+            android:text="@string/save_failed"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRetryCustomer"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/min_touch_target"
+            android:text="@string/btn_retry"
+            android:textSize="@dimen/text_size_body"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveCustomer"
+            style="@style/Widget.FarmerAccounts.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            android:backgroundTint="@color/primary"
+            android:text="@string/btn_save_customer"
+            android:textColor="@color/on_primary" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_add_work"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_size_headline"
+            android:textStyle="bold" />
+
+        <!-- 1. Customer Selection (Dropdown) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCustomer"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:hint="@string/select_customer"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="none"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 2. Tractor Selection (Dropdown) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTractor"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/select_tractor"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvTractor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="none"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 3. Work Type Selection (Dropdown) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilWorkType"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/select_work_type"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvWorkType"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="none"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 4. Date Picker Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDate"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/select_date"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius"
+            app:endIconDrawable="@drawable/ic_calendar"
+            app:endIconMode="custom">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:clickable="true"
+                android:focusable="false"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 5. Quantity and Unit Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilQuantity"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_micro"
+                android:layout_weight="1"
+                android:hint="@string/label_quantity"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/min_touch_target"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUnit"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_micro"
+                android:layout_weight="1"
+                android:hint="@string/label_unit"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/min_touch_target"
+                    android:inputType="none"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- 6. Rate per Unit (in ₹) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRate"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_rate"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 7. Dynamic Total Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/status_chip_bg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1.5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/min_touch_target"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_total"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+                <!-- Large Readable Amount -->
+                <TextView
+                    android:id="@+id/tvCalculatedTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_zero_rupees"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_size_headline"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 8. Initial Payment Received (Optional) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilInitialPayment"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_initial_payment"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etInitialPayment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Initial Payment Method (Dropdown) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPaymentMethod"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:hint="@string/label_payment_method"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_touch_target"
+                android:inputType="none"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 9. Remaining Due Dynamic Display -->
+        <TextView
+            android:id="@+id/tvRemainingDue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/label_remaining_due"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_secondary"
+            android:textStyle="bold" />
+
+        <!-- 10. Notes -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNotes"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/label_notes"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 11. Save Work Button (Min 56dp height) -->
+        <TextView
+            android:id="@+id/tvSaveError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:accessibilityLiveRegion="polite"
+            android:text="@string/save_failed"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveWork"
+            style="@style/Widget.FarmerAccounts.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            android:backgroundTint="@color/primary"
+            android:text="@string/btn_save_work"
+            android:textColor="@color/on_primary" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+

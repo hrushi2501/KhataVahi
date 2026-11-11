@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deep Green Agricultural Primary -->
+    <color name="primary">#1B5E20</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_dark">#0E3A13</color>
+    <color name="primary_container">#C8E6C9</color>
+    <color name="on_primary_container">#002105</color>
+
+    <!-- Secondary / Accents -->
+    <color name="secondary">#388E3C</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#E8F5E9</color>
+    <color name="on_secondary_container">#0A260E</color>
+
+    <!-- Pure White Light Background & Surfaces -->
+    <color name="background">#FFFFFF</color>
+    <color name="on_background">#1A1C19</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_surface">#1A1C19</color>
+    <color name="surface_variant">#F4F6F0</color>
+    <color name="on_surface_variant">#42473E</color>
+
+    <!-- Text & Borders with Sunlight Readability -->
+    <color name="text_primary">#1A1C19</color>
+    <color name="text_secondary">#494E46</color>
+    <color name="divider">#E0E3DA</color>
+    <color name="card_stroke">#D0D5CD</color>
+
+    <!-- Semantic Colors -->
+    <color name="income_green">#1B5E20</color>
+    <color name="expense_red">#B71C1C</color>
+    <color name="status_chip_bg">#E8F5E9</color>
+</resources>
+

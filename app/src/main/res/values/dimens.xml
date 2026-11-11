@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Touch Targets (min 56dp per project rules) -->
+    <dimen name="min_touch_target">56dp</dimen>
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="list_item_min_height">64dp</dimen>
+
+    <!-- Typography (min 18sp body text per project rules) -->
+    <dimen name="text_size_caption">14sp</dimen>
+    <dimen name="text_size_secondary">16sp</dimen>
+    <dimen name="text_size_body">18sp</dimen>
+    <dimen name="text_size_subtitle">20sp</dimen>
+    <dimen name="text_size_title">22sp</dimen>
+    <dimen name="text_size_headline">24sp</dimen>
+    <dimen name="text_size_large_number">32sp</dimen>
+
+    <!-- Spacing & Layout -->
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+
+    <!-- Card & Component Geometry -->
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_stroke_width">1.5dp</dimen>
+</resources>
+

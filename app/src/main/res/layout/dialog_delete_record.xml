@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="24dp">
+    <TextView android:id="@+id/tvDeleteWarning" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textColor="@color/text_primary" android:textSize="18sp" />
+    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tilReason"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" android:hint="@string/delete_reason">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etReason"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:minHeight="56dp" android:inputType="textCapSentences|textMultiLine" android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView android:id="@+id/tvDeleteError" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="16dp"
+        android:text="@string/delete_failed" android:textColor="@color/expense_red"
+        android:accessibilityLiveRegion="polite" android:textSize="18sp" android:visibility="gone" />
+</LinearLayout>

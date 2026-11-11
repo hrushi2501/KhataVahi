@@ -1,0 +1,9 @@
+# Customer matching verification
+
+Implemented offline customer matching for the Customers screen and customer pickers on work/payment forms. Exact normalized names rank before prefixes/contains and bounded one/two-character spelling suggestions; adjacent transpositions are recognized. Supports Gujarati and English Unicode names, normalized phone formatting/digits, nickname, father name and village. No embeddings, cloud lookup or automatic record merge. Cross-script transliteration is not implemented.
+
+Customer screen queries debounce for 200ms and matching runs off the UI thread. Dropdowns render at most 20 ranked suggestions with identifying details; selecting a filtered row uses its customer object/ID, not the original list position. Editing the text clears a previous selection. Changing payment customers cancels the previous work-entry load.
+
+Add/edit warning checks current active records for exact normalized phone or same/near name, excluding the edited customer. Suggestions show name/village/phone. Review opens the existing ledger (or a chooser); explicit separate-save confirmation is tied to the full current draft plus matching IDs/versions and invalidated by changed input or candidates. Cancel does not authorize bypass. Legitimate different people can retain similar names/phone; there is no unsafe database UNIQUE name constraint.
+
+Verification: assembleDebug, testDebugUnitTest and lintDebug passed. Matching tests exercise English/Gujarati typos, exact-first ranking, phone/country-code/digit normalization, name spacing, unrelated queries and self-exclusion. ViewModel tests exercise warning/confirmation, stale input/candidate invalidation, cancel and edit-self exclusion. Final total: 88 tests, zero failures/errors/skips. Manual dropdown/duplicate-dialog testing on a populated isolated ledger remains outstanding; no synthetic customer was added to the owner's ledger.
