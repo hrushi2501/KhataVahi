@@ -7,13 +7,23 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+// These client values are public and extractable from every APK. Privileged keys
+// must never be accepted here. Local overrides remain ignored by Git.
+val publicConfig = Properties().apply {
+    rootProject.file("supabase.properties").inputStream().use { load(it) }
+}
 val secretsFile = rootProject.file("secrets.properties")
 val secretsProperties = Properties()
 if (secretsFile.exists()) {
     secretsFile.inputStream().use { secretsProperties.load(it) }
 }
-val supabaseUrl = secretsProperties.getProperty("SUPABASE_URL") ?: ""
-val supabasePublishableKey = secretsProperties.getProperty("SUPABASE_PUBLISHABLE_KEY") ?: ""
+fun clientSetting(name: String): String =
+    (System.getenv(name) ?: secretsProperties.getProperty(name) ?: publicConfig.getProperty(name) ?: "").trim()
+val supabaseUrl = clientSetting("SUPABASE_URL")
+val supabasePublishableKey = clientSetting("SUPABASE_PUBLISHABLE_KEY")
+require(supabaseUrl.startsWith("https://") && supabasePublishableKey.startsWith("sb_publishable_")) {
+    "A Supabase HTTPS URL and publishable client key are required. Never use privileged keys."
+}
 
 android {
     namespace = "com.farmeraccounts"

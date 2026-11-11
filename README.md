@@ -27,7 +27,7 @@ Release artifacts currently build unsigned. Configure a protected upload/signing
 
 ## Local configuration
 
-Android reads only `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` from ignored `secrets.properties`. No database password or privileged API key belongs in BuildConfig/APK. Without cloud configuration/login, local accounts remain usable.
+Android reads public client configuration from `supabase.properties`, with environment variables and ignored `secrets.properties` taking precedence. These publishable values are intentionally included in APKs; access remains protected by owner authentication and RLS. Builds reject missing configuration and privileged keys. No database password or privileged API key belongs in BuildConfig/APK. Without cloud configuration/login, local accounts remain usable.
 
 Mac-only database checks use ignored `.env`; copy `.env.example` and set `DATABASE_URL` locally. This file is never read by the Android build.
 

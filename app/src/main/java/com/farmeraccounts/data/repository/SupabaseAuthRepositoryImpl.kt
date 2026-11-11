@@ -51,6 +51,7 @@ class SupabaseAuthRepositoryImpl(
                 // Concurrently attempt non-blocking cloud token refresh
                 if (supabaseClient != null) {
                     try {
+                        supabaseClient.auth.awaitInitialization()
                         val session = supabaseClient.auth.currentSessionOrNull()
                         if (session != null) {
                             _authState.value = AuthState.Authenticated(session.user?.id ?: cachedUserId, cachedEmail)
@@ -166,6 +167,7 @@ class SupabaseAuthRepositoryImpl(
     override suspend fun refreshSession(): Result<Unit> = withContext(Dispatchers.IO) {
         if (supabaseClient == null) return@withContext Result.failure(IllegalStateException("Supabase not configured"))
         try {
+            supabaseClient.auth.awaitInitialization()
             supabaseClient.auth.refreshCurrentSession()
             val user = supabaseClient.auth.currentUserOrNull()
             if (user != null) {
