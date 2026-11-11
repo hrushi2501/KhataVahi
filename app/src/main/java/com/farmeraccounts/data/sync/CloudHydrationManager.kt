@@ -44,9 +44,9 @@ data class HydrationResult(
 class CloudHydrationManager(
     private val database: AppDatabase,
     private val supabaseClient: SupabaseClient,
-    context: Context
+    context: Context,
+    private val cursorPreferences: SyncCursorPreferences = SyncCursorPreferences(context.applicationContext)
 ) {
-    private val cursorPreferences = SyncCursorPreferences(context.applicationContext)
     private val outboxDao = database.outboxDao()
     private val customerDao = database.customerDao()
     private val tractorDao = database.tractorDao()

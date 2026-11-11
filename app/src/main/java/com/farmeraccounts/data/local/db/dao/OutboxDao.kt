@@ -21,9 +21,18 @@ interface OutboxDao {
 
     // Rank before LIMIT so a bounded batch cannot select children ahead of pending parents.
     @Query("""SELECT * FROM outbox WHERE sync_status = 'PENDING'
-        ORDER BY CASE UPPER(entity_type)
-            WHEN 'CUSTOMER' THEN 1 WHEN 'TRACTOR' THEN 2 WHEN 'WORK_ENTRY' THEN 3
-            WHEN 'PAYMENT' THEN 4 WHEN 'EXPENSE' THEN 5 WHEN 'AUDIT_LOG' THEN 6 ELSE 99 END,
+        ORDER BY CASE
+            WHEN EXISTS (SELECT 1 FROM outbox deletion
+                WHERE deletion.entity_type = outbox.entity_type AND deletion.entity_id = outbox.entity_id
+                AND deletion.operation_type = 'SOFT_DELETE') AND EXISTS (
+                SELECT 1 FROM sync_versions v WHERE v.entity_type = UPPER(outbox.entity_type)
+                AND v.entity_id = outbox.entity_id
+            ) THEN CASE UPPER(entity_type)
+                WHEN 'PAYMENT' THEN 6 WHEN 'WORK_ENTRY' THEN 7 WHEN 'EXPENSE' THEN 8
+                WHEN 'CUSTOMER' THEN 9 WHEN 'TRACTOR' THEN 10 ELSE 99 END
+            ELSE CASE UPPER(entity_type)
+                WHEN 'CUSTOMER' THEN 1 WHEN 'TRACTOR' THEN 2 WHEN 'WORK_ENTRY' THEN 3
+                WHEN 'PAYMENT' THEN 4 WHEN 'EXPENSE' THEN 5 WHEN 'AUDIT_LOG' THEN 11 ELSE 99 END END,
             sequence_id ASC LIMIT :limit""")
     suspend fun getPendingBatch(limit: Int): List<OutboxEntity>
 

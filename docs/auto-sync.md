@@ -13,9 +13,9 @@ Implemented 11 November 2026. Room saves are independent of connectivity. Sign-i
 
 ## Uploads
 
-A run snapshots at most 200 pending mutations and coalesces them by entity. Multiple pending edits upload the current immutable in-memory row snapshot once. Customers/tractors precede dependent work/payments/expenses; audit UUID replay uses insert-ignore semantics. Only captured outbox sequence IDs are acknowledged after server success; edits arriving during a request remain pending.
+A run snapshots at most 200 pending mutations and coalesces them by entity. Multiple pending edits upload the current immutable in-memory row snapshot once. New records and never-uploaded tombstones send customers/tractors before dependent work/payments/expenses. Confirmed soft deletes send payments/work before customers/tractors, including coalesced pending corrections; audit UUID replay uses insert-ignore semantics. Only captured outbox sequence IDs are acknowledged after server success; edits arriving during a request remain pending.
 
-Abandoned in-progress claims recover on the next serialized run. Network failures remain pending. Authentication failure waits for sign-in; permanent validation failures remain visible and block dependent progress. A newer local correction for the same entity automatically requeues its failed mutations; unrelated failures are not silently discarded.
+Abandoned in-progress claims recover on the next serialized run. Network failures remain pending. Authentication failure waits for sign-in; permanent validation failures remain visible and block dependent progress. A newer local correction for the same entity automatically requeues its failed mutations; unrelated failures are not silently discarded. A conclusively rejected FK request can be rebuilt behind a still-pending parent; uncertain requests retain their frozen identity. Observers start in Application.onCreate, including process entry points that do not create an Activity.
 
 Default tractor parents now seed transactionally with outbox rows. A one-time DataStore enrollment covers legacy seed rows so their work cannot fail merely because the tractor was never uploaded.
 

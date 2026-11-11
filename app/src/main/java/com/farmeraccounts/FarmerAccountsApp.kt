@@ -37,6 +37,10 @@ class FarmerAccountsApp : Application() {
             // Safe fallback if WorkManager initialization deferred
         }
 
+        // Start the durable outbox/auth observers for every process entry point,
+        // including background startup before any Activity requests the lazy service.
+        container.syncManager
+
         // Strict requirement: Light mode must be default on first launch, regardless of system appearance
         AppCompatDelegate.setDefaultNightMode(ThemeMode.DEFAULT.nightMode)
 

@@ -68,6 +68,42 @@ class OutboxSyncProcessorTest {
     }
 
     @Test
+    fun `confirmed deletes upload children before parents while unseen tombstones keep parent order`() = runBlocking {
+        val types = listOf("CUSTOMER", "WORK_ENTRY", "PAYMENT")
+        for (type in types) {
+            db.outboxDao().insert(OutboxEntity(entityType = type, entityId = "confirmed-$type", operationType = "SOFT_DELETE"))
+            db.syncVersionDao().set(com.farmeraccounts.data.local.db.entity.SyncVersionEntity(type, "confirmed-$type", 1))
+            db.outboxDao().insert(OutboxEntity(entityType = type, entityId = "unseen-$type", operationType = "SOFT_DELETE"))
+        }
+        enqueue("confirmed-CUSTOMER", "CUSTOMER") // pending correction coalesces into tombstone
+        val ordered = db.outboxDao().getPendingBatch(200).map { it.entityId }
+        assertEquals(listOf("unseen-CUSTOMER", "unseen-WORK_ENTRY", "unseen-PAYMENT",
+            "confirmed-PAYMENT", "confirmed-WORK_ENTRY", "confirmed-CUSTOMER", "confirmed-CUSTOMER"), ordered)
+    }
+
+    @Test
+    fun `rejected foreign key request retries behind its queued parent`() = runBlocking {
+        db.customerDao().insert(com.farmeraccounts.data.local.db.entity.CustomerEntity("c", "Test"))
+        db.tractorDao().insert(com.farmeraccounts.data.local.db.entity.TractorEntity(
+            id = "t", displayName = "Test", type = "BIG"))
+        db.workEntryDao().insert(com.farmeraccounts.data.local.db.entity.WorkEntryEntity(
+            id = "w", customerId = "c", tractorId = "t", workType = "Test", date = 1,
+            quantityScaled = 1000, quantityUnit = "BIGHA", ratePerUnitPaise = 100, totalPaise = 100))
+        val child = enqueue("w", "WORK_ENTRY", "FAILED")
+        db.outboxDao().updateStatusAndError(child, "FAILED", 1,
+            "insert violates foreign key constraint work_entries_customer_owner_fk")
+        db.uploadAttemptDao().insert(com.farmeraccounts.data.local.db.entity.UploadAttemptEntity(
+            "rejected", "WORK_ENTRY", "w", "{}", null, 1, "[$child]"))
+        enqueue("c")
+        val uploaded = mutableListOf<String>()
+        val result = OutboxSyncProcessor(db) { item, _ -> uploaded += item.entityId }.processPending("owner")
+        assertEquals(listOf("c", "w"), uploaded)
+        assertEquals(0, result.failedCount)
+        assertTrue(db.uploadAttemptDao().getAll().isEmpty())
+        assertEquals(0, db.outboxDao().getUnconfirmedCount())
+    }
+
+    @Test
     fun `transient failure stays pending without immediate retry or child upload`() = runBlocking {
         enqueue("customer", status = "IN_PROGRESS")
         enqueue("payment", "PAYMENT")

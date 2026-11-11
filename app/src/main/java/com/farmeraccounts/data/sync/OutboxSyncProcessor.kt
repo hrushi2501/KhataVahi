@@ -61,6 +61,28 @@ class OutboxSyncProcessor private constructor(
                     database.uploadAttemptDao().delete(attempt.requestId)
                 }
             }
+            // A rejected FK request has not persisted. If its parent is still queued,
+            // release only that rejected envelope and rebuild it in dependency order.
+            // Never release an uncertain request (timeout / lost response).
+            val queued = outboxDao.getUnconfirmed()
+            for (failed in queued.filter { it.syncStatus == "FAILED" &&
+                it.lastError?.contains("foreign key constraint", ignoreCase = true) == true }) {
+                val parents = when (failed.entityType.uppercase()) {
+                    "WORK_ENTRY" -> workEntryDao.getByIdIncludeDeleted(failed.entityId)?.let {
+                        setOf(it.customerId, it.tractorId)
+                    }.orEmpty()
+                    "PAYMENT" -> database.paymentDao().getByIdIncludeDeleted(failed.entityId)?.let {
+                        setOfNotNull(it.customerId, it.workEntryId)
+                    }.orEmpty()
+                    else -> emptySet()
+                }
+                if (queued.any { it.entityId in parents && it.syncStatus == "PENDING" }) {
+                    database.uploadAttemptDao().getAll().filter {
+                        it.entityType.equals(failed.entityType, true) && it.entityId == failed.entityId
+                    }.forEach { database.uploadAttemptDao().delete(it.requestId) }
+                    outboxDao.updateStatusAndError(failed.sequenceId, "PENDING", failed.retryCount, null)
+                }
+            }
             outboxDao.requeueCorrectedFailures()
         }
         val blockedCount = outboxDao.getFailedCount()
